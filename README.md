@@ -112,7 +112,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 - **Original 2021 thesis code:** every script outside `detection/yolov3/` starts with the line `% Original MS thesis code (2021)`. I changed only file names, data paths, comments and five small fixes while preparing this repository (see [Notes](#notes)).
 - **YOLO v3 helpers, 2026:** in 2021 the training and detection scripts called helper functions from a MathWorks example, which this repository cannot redistribute. I rewrote those helpers in `detection/yolov3/` from the YOLO v3 paper (Redmon & Farhadi, 2018) and the MATLAB function reference, with the same function names and arguments, so the thesis scripts call them unchanged.
-- **Verification:** `detection/yolov3/test_yolov3_helpers.m` self-checks box encoding and decoding, the ignore rule, preprocessing, mirroring and the learning-rate schedule; run it first. A full end-to-end MATLAB training run with the 2026 helpers is the next step.
+- **Verified in MATLAB R2026b (October 2026):** `detection/yolov3/test_yolov3_helpers.m` passes (box overlap, box encoding and decoding, the ignore rule, preprocessing, mirroring, learning-rate schedule), and `detection/yolov3/smoke_test_training_step.m` builds the full network and trains five steps on a random batch, with the loss falling from 15,377 to 366. Run both first; a full training run on the thesis dataset is the next step.
 - **Retrain:** the new helpers lay out each head's output as `[tx ty tw th to class_1 … class_C]` per anchor. A network trained in 2021 with the example helpers uses a different layout, so train a new one with `train_yolov3`.
 
 ## Run each step
@@ -121,7 +121,7 @@ Set up once:
 
 1. Clone the repository and open MATLAB in its root folder.
 2. Add the third-party code listed under [Requirements](#requirements) if you need it, then put everything on the path: `addpath(genpath(pwd))`.
-3. Run the helper self-checks once: `test_yolov3_helpers`.
+3. Run the helper self-checks once: `test_yolov3_helpers`, then `smoke_test_training_step`.
 4. Change into a step's folder before running its script. The scripts load data with paths relative to their own folder, such as `../sample_data/fusion/transformations.mat`.
 
 | Step | Run from | Command | Needs |
@@ -191,6 +191,7 @@ yolov3-camera-lidar-fusion/
 │       ├── modelGradients.m, buildYolov3Targets.m, splitHeadOutput.m, decodeHeadBoxes.m
 │       ├── yolov3Detect.m, preprocessData.m, augmentData.m, createBatchData.m
 │       ├── piecewiseLearningRateWithWarmup.m, configureTrainingProgressPlotter.m, displayLossInfo.m
+│       ├── smoke_test_training_step.m # builds the network, trains 5 steps on random data
 │       └── test_yolov3_helpers.m      # self-checks; run first
 ├── calibration/
 │   ├── stereo_camera_calibration.m    # checkerboard stereo calibration (Stereo Camera Calibrator export)
