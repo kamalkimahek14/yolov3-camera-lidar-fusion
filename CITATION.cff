@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the thesis below."
+type: software
+license: MIT
+title: "YOLO-v3 object detection and camera-LiDAR Kalman fusion (MATLAB source of an MS thesis)"
+authors:
+  - family-names: Mehta
+    given-names: Kamal
+repository-code: "https://github.com/kamalkimahek14/yolov3-camera-lidar-fusion"
+url: "https://kamal-mehta.com"
+keywords:
+  - object detection
+  - YOLO-v3
+  - sensor fusion
+  - LiDAR
+  - stereo camera
+  - Kalman filter
+  - MATLAB
+preferred-citation:
+  type: thesis
+  thesis-type: "Master's thesis"
+  title: "Object Classification, Detection and State Estimation using YOLO v3 Deep Neural Network and Sensor Fusion of Stereo Camera and LiDAR"
+  authors:
+    - family-names: Mehta
+      given-names: Kamal
+  institution:
+    name: "The University of Texas at Arlington"
+  department: "Mechanical and Aerospace Engineering"
+  year: 2021
+  month: 8
