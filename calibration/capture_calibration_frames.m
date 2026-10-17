@@ -60,7 +60,7 @@ I_right = w_right.snapshot();
   
   imwrite(I_left,sprintf('Left%i.jpg',i))
   imwrite(I_right,sprintf('Right%i.jpg',i))
-  pcwrite(pcl,sprintf('%i.pcd',i),'Encoding','ascii');
+  pcwrite(pCloud,sprintf('%i.pcd',i),'Encoding','ascii');
   
 % view(player1,pCloud); 
 % end

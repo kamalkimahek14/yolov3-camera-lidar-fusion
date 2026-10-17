@@ -110,7 +110,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 ## Original thesis code and 2026 helpers
 
-- **Original 2021 thesis code:** every script outside `detection/yolov3/` starts with the line `% Original MS thesis code (2021)`. I changed only file names, data paths and comments while preparing this repository.
+- **Original 2021 thesis code:** every script outside `detection/yolov3/` starts with the line `% Original MS thesis code (2021)`. I changed only file names, data paths, comments and five small fixes while preparing this repository (see [Notes](#notes)).
 - **YOLO v3 helpers, 2026:** in 2021 the training and detection scripts called helper functions from a MathWorks example, which this repository cannot redistribute. I rewrote those helpers in `detection/yolov3/` from the YOLO v3 paper (Redmon & Farhadi, 2018) and the MATLAB function reference, with the same function names and arguments, so the thesis scripts call them unchanged.
 - **Status:** the helper functions in `detection/yolov3/` were rewritten in 2026 to replace third-party example code and have not yet been run end-to-end in MATLAB. `detection/yolov3/test_yolov3_helpers.m` holds self-checks for box encoding and decoding, the ignore rule, preprocessing, mirroring and the learning-rate schedule; run it first.
 - **Retrain:** the new helpers lay out each head's output as `[tx ty tw th to class_1 … class_C]` per anchor. A network trained in 2021 with the example helpers uses a different layout, so train a new one with `train_yolov3`.
@@ -222,14 +222,7 @@ yolov3-camera-lidar-fusion/
 
 ## Notes
 
-The code is kept as I wrote it in 2021. These details in it are worth knowing before a run:
-
-- `fusion/realtime_fusion.m` passes `networkInputSize` as the third argument of `yolov3Detect`, which expects `networkOutputs`.
-- `fusion/realtime_fusion.m` builds the label score as `(scores_left + scores_left)/2`, so it shows the left-camera score.
-- `detection/train_yolov3.m` has the line `% Trainingif dotraining == true`, so the training loop always runs.
-- `calibration/capture_calibration_frames.m` saves the cloud with `pcwrite(pcl, ...)`, while the cloud it builds is named `pCloud`.
-- `simulation/run_fusion_simulation.m` plots column 8 (z velocity) in the z-acceleration panel; z acceleration is column 9.
-- `simulation/DrivingScene.m` declares `function DrivingScene1`; MATLAB runs it by the file name, `DrivingScene`.
+Prepared for this repository in 2026: data paths made relative, five small fixes (argument names, a plot column, a function name), and the YOLO v3 helpers rewritten.
 
 ## Not included
 

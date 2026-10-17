@@ -254,9 +254,9 @@ legend( 'Prediction', 'Estimated')
 hold off;
 %Z
 subplot(313);
-plot(time,X_pred(:,8),'b')
+plot(time,X_pred(:,9),'b')
 hold on;
-plot(time,X_est(:,8),'m',"LineWidth",2)
+plot(time,X_est(:,9),'m',"LineWidth",2)
 xlabel('t (sec)')
 ylabel('Z Acceleration (Meter/sec^2)')
 legend( 'Prediction', 'Estimated')
