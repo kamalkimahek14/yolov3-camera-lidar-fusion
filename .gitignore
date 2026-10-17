@@ -10,7 +10,7 @@ sccprj/
 octave-workspace
 .DS_Store
 
-# Data that stays out of this repository (see README, "Not included")
+# Large data and build files
 Image_data/
 calibration_images/
 gTruth_image.mat

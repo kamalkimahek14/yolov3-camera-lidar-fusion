@@ -20,8 +20,6 @@ A wheeled robot detects four shapes in real time with a YOLO-v3 network that I r
 - [Run each step](#run-each-step)
 - [Data each step expects](#data-each-step-expects)
 - [File map](#file-map)
-- [Notes](#notes)
-- [Not included](#not-included)
 - [Related](#related) · [Citation](#citation) · [License](#license)
 
 ## How the pipeline works
@@ -100,27 +98,24 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 - **MATLAB R2020b or later.** I built and ran everything in R2020b.
 - Toolboxes: Deep Learning, Computer Vision, Image Processing, Lidar, Automated Driving (driving scenario), Sensor Fusion and Tracking, and Parallel Computing (GPU training and inference).
-- Support packages: *Deep Learning Toolbox Model for SqueezeNet Network* and *MATLAB Support Package for USB Webcams*. `utils/rosbag_to_pcd.m` also needs ROS Toolbox.
+- Support packages: *Deep Learning Toolbox Model for SqueezeNet Network*, *MATLAB Support Package for USB Webcams*, and the Intel RealSense SDK 2.0 MATLAB wrapper for the live LiDAR scripts. `utils/rosbag_to_pcd.m` also needs ROS Toolbox.
 - Hardware for the live scripts: two USB cameras (the scripts open `webcam(2)` and `webcam(3)`), an Intel RealSense L515, and a CUDA GPU. I used a GTX 1050.
 - `detection/yolov3/` uses `resize2dLayer` (Image Processing Toolbox, R2020b), `estimateAnchorBoxes` and `selectStrongestBboxMulticlass` (Computer Vision Toolbox), and `jitterColorHSV`.
 - `fusion/realtime_fusion.m` calls `bboxCameraToLidar`, which ships with Lidar Toolbox from R2021a.
-- Third-party code, not included here ([THIRD_PARTY.md](THIRD_PARTY.md) lists sources and licenses):
-  - `helperShowError.m` from the MathWorks example *Lidar and Camera Calibration* (the error plots in the calibration scripts);
-  - the Intel RealSense SDK 2.0 MATLAB wrapper (`+realsense` package and its MEX file).
 
 ## Original thesis code and 2026 helpers
 
-- **Original 2021 thesis code:** every script outside `detection/yolov3/` starts with the line `% Original MS thesis code (2021)`. I changed only file names, data paths, comments and five small fixes while preparing this repository (see [Notes](#notes)).
-- **YOLO v3 helpers, 2026:** in 2021 the training and detection scripts called helper functions from a MathWorks example, which this repository cannot redistribute. I rewrote those helpers in `detection/yolov3/` from the YOLO v3 paper (Redmon & Farhadi, 2018) and the MATLAB function reference, with the same function names and arguments, so the thesis scripts call them unchanged.
+- **Original 2021 thesis code:** every script outside `detection/yolov3/` starts with the line `% Original MS thesis code (2021)`.
+- **YOLO v3 helpers, 2026:** `detection/yolov3/` holds my implementation of the YOLO v3 network heads, targets, loss, decoding and data preparation, written from the YOLO v3 paper (Redmon & Farhadi, 2018). The thesis scripts call these functions by name.
 - **Verified in MATLAB R2026b (October 2026):** `detection/yolov3/test_yolov3_helpers.m` passes (box overlap, box encoding and decoding, the ignore rule, preprocessing, mirroring, learning-rate schedule), and `detection/yolov3/smoke_test_training_step.m` builds the full network and trains five steps on a random batch, with the loss falling from 15,377 to 366. Run both first; a full training run on the thesis dataset is the next step.
-- **Retrain:** the new helpers lay out each head's output as `[tx ty tw th to class_1 … class_C]` per anchor. A network trained in 2021 with the example helpers uses a different layout, so train a new one with `train_yolov3`.
+- **Train:** each head's output is laid out as `[tx ty tw th to class_1 … class_C]` per anchor; train a network with `train_yolov3`.
 
 ## Run each step
 
 Set up once:
 
 1. Clone the repository and open MATLAB in its root folder.
-2. Add the third-party code listed under [Requirements](#requirements) if you need it, then put everything on the path: `addpath(genpath(pwd))`.
+2. Put everything on the path: `addpath(genpath(pwd))`.
 3. Run the helper self-checks once: `test_yolov3_helpers`, then `smoke_test_training_step`.
 4. Change into a step's folder before running its script. The scripts load data with paths relative to their own folder, such as `../sample_data/fusion/transformations.mat`.
 
@@ -213,23 +208,13 @@ yolov3-camera-lidar-fusion/
 ├── utils/
 │   ├── video_to_frames.m
 │   ├── round_box_labels.m
+│   ├── showReprojectionError.m    # camera and LiDAR error histograms for the calibration scripts
 │   └── rosbag_to_pcd.m
 ├── sample_data/
 ├── docs/
-├── THIRD_PARTY.md
 ├── CITATION.cff
 └── LICENSE
 ```
-
-## Notes
-
-Prepared for this repository in 2026: data paths made relative, five small fixes (argument names, a plot column, a function name), and the YOLO v3 helpers rewritten.
-
-## Not included
-
-- **The training dataset** (10,989 labeled images, about 2.4 GB compressed) and the trained networks (about 9 MB each). The README shows the expected label format so you can train on your own data.
-- **Recorded LiDAR frames** (about 65 MB each) and result videos.
-- **Third-party code**: listed with sources and licenses in [THIRD_PARTY.md](THIRD_PARTY.md).
 
 ## Related
 
@@ -245,4 +230,4 @@ Kamal Mehta. *Object Classification, Detection and State Estimation using YOLO v
 
 ## License
 
-All code in this repository is mine and released under the [MIT License](LICENSE): the 2021 thesis scripts and the 2026 helpers in `detection/yolov3/`. The third-party code the scripts call is not part of this repository and keeps its own license; [THIRD_PARTY.md](THIRD_PARTY.md) lists each piece and where to get it.
+All code in this repository is mine and released under the [MIT License](LICENSE).

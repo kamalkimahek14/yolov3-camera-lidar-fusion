@@ -48,4 +48,4 @@ Reprojection_error.meanCamera = mean(Reprojection_error.Camera);
 Reprojection_error.SD_Lidar = std(Reprojection_error.Lidar,1);
 Reprojection_error.SD_Camera = std(Reprojection_error.Camera,1);
 
-helperShowError(Reprojection_error)
+showReprojectionError(Reprojection_error)
