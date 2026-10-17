@@ -57,7 +57,7 @@ for n = 1:batchSize
     for k = 1:numHeads
         h = gridSize(k, 1); w = gridSize(k, 2); A = gridSize(k, 3);
         predBoxes = reshape(permute(decoded{k}(:, :, :, :, n), [1 2 4 3]), [], 4);   % (h*w*A)-by-4
-        bestOverlap = max(bboxOverlapRatio(predBoxes, gtBoxes), [], 2);
+        bestOverlap = max(boxIoU(predBoxes, gtBoxes), [], 2);
         ignore{k}(:, :, 1, :, n) = reshape(bestOverlap > ignoreThreshold, h, w, 1, A);
     end
 

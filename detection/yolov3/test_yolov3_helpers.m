@@ -1,8 +1,8 @@
 % Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
 %
 % test_yolov3_helpers  Self-checks for the helpers that need no trained network.
-% Run from the repository root after addpath(genpath(pwd)). Needs Computer
-% Vision Toolbox (bboxOverlapRatio) and Image Processing Toolbox (imresize).
+% Run from the repository root after addpath(genpath(pwd)). Needs Image
+% Processing Toolbox (imresize).
 
 %% Learning-rate schedule matches the 2021 training log
 assert(abs(piecewiseLearningRateWithWarmup(1, 1e-4, 500, 11000) - 1.6e-15) < 1e-20);
@@ -10,6 +10,11 @@ assert(piecewiseLearningRateWithWarmup(500, 1e-4, 500, 11000) == 1e-4);
 assert(piecewiseLearningRateWithWarmup(6799, 1e-4, 500, 11000) == 1e-4);
 assert(abs(piecewiseLearningRateWithWarmup(6800, 1e-4, 500, 11000) - 1e-5) < 1e-18);
 assert(abs(piecewiseLearningRateWithWarmup(9950, 1e-4, 500, 11000) - 1e-6) < 1e-18);
+
+%% Box overlap (intersection over union)
+assert(abs(boxIoU([0 0 10 10], [5 0 10 10]) - 50/150) < 1e-12);
+assert(boxIoU([0 0 10 10], [20 20 5 5]) == 0);
+assert(isequal(size(boxIoU(rand(3,4)+[0 0 1 1], rand(2,4)+[0 0 1 1])), [3 2]));
 
 %% Box encoding (targets) and decoding agree
 inputSize = [227 227];

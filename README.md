@@ -102,7 +102,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 - Toolboxes: Deep Learning, Computer Vision, Image Processing, Lidar, Automated Driving (driving scenario), Sensor Fusion and Tracking, and Parallel Computing (GPU training and inference).
 - Support packages: *Deep Learning Toolbox Model for SqueezeNet Network* and *MATLAB Support Package for USB Webcams*. `utils/rosbag_to_pcd.m` also needs ROS Toolbox.
 - Hardware for the live scripts: two USB cameras (the scripts open `webcam(2)` and `webcam(3)`), an Intel RealSense L515, and a CUDA GPU. I used a GTX 1050.
-- `detection/yolov3/` uses `resize2dLayer` (Image Processing Toolbox, R2020b), `estimateAnchorBoxes`, `bboxOverlapRatio` and `selectStrongestBboxMulticlass` (Computer Vision Toolbox), and `jitterColorHSV`.
+- `detection/yolov3/` uses `resize2dLayer` (Image Processing Toolbox, R2020b), `estimateAnchorBoxes` and `selectStrongestBboxMulticlass` (Computer Vision Toolbox), and `jitterColorHSV`.
 - `fusion/realtime_fusion.m` calls `bboxCameraToLidar`, which ships with Lidar Toolbox from R2021a.
 - Third-party code, not included here ([THIRD_PARTY.md](THIRD_PARTY.md) lists sources and licenses):
   - `helperShowError.m` from the MathWorks example *Lidar and Camera Calibration* (the error plots in the calibration scripts);
