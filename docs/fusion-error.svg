@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="960" height="360" role="img" aria-labelledby="t d">
+  <title id="t">Position error: camera, LiDAR and fused estimate in simulation</title>
+  <desc id="d">Mean position error in the driving-scenario simulation. X: camera 0.95 m, LiDAR 0.29 m, fused 0.40 m. Y: camera 0.20 m, LiDAR 0.033 m, fused 0.14 m. Overall: camera 0.97 m, LiDAR 0.29 m, fused 0.42 m, a 56 percent improvement over the camera alone. Z errors are near zero for all three.</desc>
+  <style>
+    text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#e2e8f0}
+    .h{font-size:20px;font-weight:600}
+    .s{font-size:13px;fill:#94a3b8}
+    .a{font-size:12px;fill:#94a3b8}
+    .l{font-size:14px;font-weight:600}
+    .v{font-size:12px;font-weight:600}
+    .g{stroke:#1e293b;stroke-width:1}
+    .ax{stroke:#475569;stroke-width:1.2}
+  </style>
+  <rect width="960" height="360" rx="16" fill="#0f172a"/>
+  <text x="28" y="40" class="h">Position error in simulation (simulation/run_fusion_simulation.m)</text>
+  <text x="28" y="62" class="s">thesis table "Sensor Measurement and Residue Error in Driving Scene", metres, lower is better</text>
+
+  <!-- legend -->
+  <rect x="640" y="78" width="14" height="14" rx="3" fill="#64748b"/><text x="660" y="90" class="a">Camera</text>
+  <rect x="726" y="78" width="14" height="14" rx="3" fill="#a78bfa"/><text x="746" y="90" class="a">LiDAR</text>
+  <rect x="804" y="78" width="14" height="14" rx="3" fill="#34d399"/><text x="824" y="90" class="a">Fused (Kalman)</text>
+
+  <!-- axis: 0..1.0 m over x 160..760 -->
+  <g class="g"><line x1="310" y1="104" x2="310" y2="300"/><line x1="460" y1="104" x2="460" y2="300"/><line x1="610" y1="104" x2="610" y2="300"/><line x1="760" y1="104" x2="760" y2="300"/></g>
+  <line x1="160" y1="104" x2="160" y2="300" class="ax"/>
+  <g class="a" text-anchor="middle"><text x="160" y="318">0</text><text x="310" y="318">0.25</text><text x="460" y="318">0.50</text><text x="610" y="318">0.75</text><text x="760" y="318">1.00 m</text></g>
+
+  <!-- X -->
+  <text x="146" y="140" class="l" text-anchor="end">X</text>
+  <rect x="160" y="112" width="570" height="16" rx="3" fill="#64748b"/><text x="736" y="125" class="v">0.95</text>
+  <rect x="160" y="130" width="174" height="16" rx="3" fill="#a78bfa"/><text x="340" y="143" class="v">0.29</text>
+  <rect x="160" y="148" width="240" height="16" rx="3" fill="#34d399"/><text x="406" y="161" class="v">0.40</text>
+
+  <!-- Y -->
+  <text x="146" y="206" class="l" text-anchor="end">Y</text>
+  <rect x="160" y="178" width="120" height="16" rx="3" fill="#64748b"/><text x="286" y="191" class="v">0.20</text>
+  <rect x="160" y="196" width="19.8" height="16" rx="3" fill="#a78bfa"/><text x="186" y="209" class="v">0.033</text>
+  <rect x="160" y="214" width="84" height="16" rx="3" fill="#34d399"/><text x="250" y="227" class="v">0.14</text>
+
+  <!-- Overall -->
+  <text x="146" y="272" class="l" text-anchor="end">Overall</text>
+  <rect x="160" y="244" width="582" height="16" rx="3" fill="#64748b"/><text x="748" y="257" class="v">0.97</text>
+  <rect x="160" y="262" width="174" height="16" rx="3" fill="#a78bfa"/><text x="340" y="275" class="v">0.29</text>
+  <rect x="160" y="280" width="252" height="16" rx="3" fill="#34d399"/><text x="418" y="293" class="v">0.42</text>
+
+  <text x="28" y="344" class="s">Fused error is 56% lower than the camera alone, and the filter adds velocity and acceleration. Z errors are 0.0001 m or less for all three.</text>
+</svg>

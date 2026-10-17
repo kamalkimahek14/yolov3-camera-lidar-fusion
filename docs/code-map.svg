@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470" role="img" aria-labelledby="t d">
+  <title id="t">Code map: which folder does which step</title>
+  <desc id="d">Five pipeline steps in order, each with its folder and main scripts: detection trains and runs YOLO-v3; calibration finds camera intrinsics, sensor errors and the camera-to-LiDAR transform; lidar streams and clusters point clouds; fusion runs the real-time Kalman filter on the robot; simulation tests the same filter in a MATLAB driving scenario. sample_data feeds the calibration, fusion and simulation scripts; utils prepares data.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+    <style>
+      text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#e2e8f0}
+      .h{font-size:20px;font-weight:600}
+      .s{font-size:13px;fill:#94a3b8}
+      .n{font-size:12px;font-weight:700;fill:#0f172a}
+      .f{font-size:15px;font-weight:700;font-family:ui-monospace,Consolas,monospace}
+      .w{font-size:12px;fill:#cbd5e1}
+      .m{font-size:11.5px;fill:#94a3b8;font-family:ui-monospace,Consolas,monospace}
+      .ln{stroke:#94a3b8;stroke-width:1.8;fill:none;marker-end:url(#a)}
+      .dl{stroke:#475569;stroke-width:1.4;fill:none;stroke-dasharray:4 4;marker-end:url(#a)}
+      .c{fill:#1e293b;stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="960" height="470" rx="16" fill="#0f172a"/>
+  <text x="28" y="40" class="h">Code map</text>
+  <text x="28" y="62" class="s">run the steps left to right; each folder holds the scripts for one step</text>
+
+  <!-- step cards -->
+  <g>
+    <rect x="28" y="86" width="168" height="230" rx="12" class="c" stroke="#22d3ee"/>
+    <circle cx="50" cy="110" r="12" fill="#22d3ee"/><text x="50" y="114" class="n" text-anchor="middle">1</text>
+    <text x="70" y="115" class="f">detection/</text>
+    <text x="42" y="142" class="w">Train YOLO-v3 on the</text>
+    <text x="42" y="158" class="w">4 shapes; detect live in</text>
+    <text x="42" y="174" class="w">both stereo cameras.</text>
+    <text x="42" y="206" class="m">train_yolov3.m</text>
+    <text x="42" y="224" class="m">realtime_stereo_</text>
+    <text x="42" y="240" class="m">  detection.m</text>
+    <text x="42" y="264" class="m">yolov3/  helpers:</text>
+    <text x="42" y="280" class="m">  heads, loss, NMS</text>
+  </g>
+  <g>
+    <rect x="212" y="86" width="168" height="230" rx="12" class="c" stroke="#a78bfa"/>
+    <circle cx="234" cy="110" r="12" fill="#a78bfa"/><text x="234" y="114" class="n" text-anchor="middle">2</text>
+    <text x="254" y="115" class="f">calibration/</text>
+    <text x="226" y="142" class="w">Stereo intrinsics, sensor</text>
+    <text x="226" y="158" class="w">errors → covariances R,</text>
+    <text x="226" y="174" class="w">camera ↔ LiDAR transform.</text>
+    <text x="226" y="206" class="m">stereo_camera_</text>
+    <text x="226" y="222" class="m">  calibration.m</text>
+    <text x="226" y="240" class="m">camera_lidar_</text>
+    <text x="226" y="256" class="m">  calibration.m</text>
+    <text x="226" y="274" class="m">extrinsic_from_</text>
+    <text x="226" y="290" class="m">  corners.m</text>
+  </g>
+  <g>
+    <rect x="396" y="86" width="168" height="230" rx="12" class="c" stroke="#a78bfa"/>
+    <circle cx="418" cy="110" r="12" fill="#a78bfa"/><text x="418" y="114" class="n" text-anchor="middle">3</text>
+    <text x="438" y="115" class="f">lidar/</text>
+    <text x="410" y="142" class="w">Stream the L515 point</text>
+    <text x="410" y="158" class="w">cloud, crop a region,</text>
+    <text x="410" y="174" class="w">cluster and fit cuboids.</text>
+    <text x="410" y="206" class="m">stream_pointcloud_</text>
+    <text x="410" y="222" class="m">  roi.m</text>
+    <text x="410" y="240" class="m">cluster_and_fit_</text>
+    <text x="410" y="256" class="m">  cuboids.m</text>
+  </g>
+  <g>
+    <rect x="580" y="86" width="168" height="230" rx="12" class="c" stroke="#34d399"/>
+    <circle cx="602" cy="110" r="12" fill="#34d399"/><text x="602" y="114" class="n" text-anchor="middle">4</text>
+    <text x="622" y="115" class="f">fusion/</text>
+    <text x="594" y="142" class="w">Live loop on the robot:</text>
+    <text x="594" y="158" class="w">detect, triangulate, find</text>
+    <text x="594" y="174" class="w">LiDAR box, Kalman fuse.</text>
+    <text x="594" y="206" class="m">realtime_fusion.m</text>
+    <text x="594" y="224" class="m">sensor_fusion.m</text>
+    <text x="594" y="242" class="m">prototypes/</text>
+  </g>
+  <g>
+    <rect x="764" y="86" width="168" height="230" rx="12" class="c" stroke="#fbbf24"/>
+    <circle cx="786" cy="110" r="12" fill="#fbbf24"/><text x="786" y="114" class="n" text-anchor="middle">5</text>
+    <text x="806" y="115" class="f">simulation/</text>
+    <text x="778" y="142" class="w">Driving scenario with</text>
+    <text x="778" y="158" class="w">camera + LiDAR sensors;</text>
+    <text x="778" y="174" class="w">same Kalman filter.</text>
+    <text x="778" y="206" class="m">DrivingScene.m</text>
+    <text x="778" y="224" class="m">run_fusion_</text>
+    <text x="778" y="240" class="m">  simulation.m</text>
+    <text x="778" y="258" class="m">estimate_sensor_</text>
+    <text x="778" y="274" class="m">  error.m</text>
+  </g>
+
+  <!-- step arrows -->
+  <path class="ln" d="M196 200H210"/>
+  <path class="ln" d="M380 200H394"/>
+  <path class="ln" d="M564 200H578"/>
+
+  <!-- shared folders -->
+  <rect x="212" y="366" width="720" height="60" rx="12" fill="#111827" stroke="#334155" stroke-dasharray="5 4"/>
+  <text x="232" y="392" class="f">sample_data/</text>
+  <text x="232" y="412" class="w">stereo pair, calibration results (.mat), camera ↔ LiDAR transform, simulation covariances</text>
+  <rect x="28" y="366" width="168" height="60" rx="12" fill="#111827" stroke="#334155" stroke-dasharray="5 4"/>
+  <text x="48" y="392" class="f">utils/</text>
+  <text x="48" y="412" class="w">video → frames, labels</text>
+  <path class="dl" d="M296 366V320"/>
+  <path class="dl" d="M664 366V320"/>
+  <path class="dl" d="M848 366V320"/>
+  <path class="dl" d="M112 366V320"/>
+</svg>

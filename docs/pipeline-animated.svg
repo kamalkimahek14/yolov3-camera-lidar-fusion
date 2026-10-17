@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 960 400" width="960" height="400" role="img" aria-labelledby="t d">
+  <title id="t">Data flowing through the detection and fusion pipeline</title>
+  <desc id="d">Animated: stereo camera frames go through YOLO-v3 to 2D boxes, which are triangulated to a camera position and also projected into the LiDAR point cloud as 3D frustums. Clustering inside each frustum gives a LiDAR position. Both positions enter a constant-acceleration Kalman filter that outputs position, velocity and acceleration.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#475569"/></marker>
+    <style>
+      text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#e2e8f0}
+      .h{font-size:20px;font-weight:600}
+      .s{font-size:13px;fill:#94a3b8}
+      .b{font-size:14px;font-weight:600}
+      .l{font-size:12px;fill:#cbd5e1}
+      .m{font-size:11px;fill:#94a3b8;font-family:ui-monospace,Consolas,monospace}
+      .ln{stroke:#475569;stroke-width:1.8;fill:none;marker-end:url(#a)}
+      .box{fill:#1e293b;stroke-width:1.5}
+      .pulse{animation:p 4s ease-in-out infinite}
+      @keyframes p{0%,100%{stroke-opacity:.45}50%{stroke-opacity:1}}
+      .d1{animation-delay:0s}.d2{animation-delay:.8s}.d3{animation-delay:1.6s}.d4{animation-delay:2.4s}.d5{animation-delay:3.2s}
+      .blink{animation:b 1.2s steps(2) infinite}
+      @keyframes b{50%{opacity:.25}}
+    </style>
+    <path id="p1" d="M178 120H232"/>
+    <path id="p2" d="M382 120H436"/>
+    <path id="p3" d="M307 154C307 220 330 280 436 280"/>
+    <path id="p4" d="M178 280H436"/>
+    <path id="p5" d="M586 120C622 120 622 186 648 186"/>
+    <path id="p6" d="M586 280C622 280 622 226 648 226"/>
+    <path id="p7" d="M808 206H838"/>
+  </defs>
+  <rect width="960" height="400" rx="16" fill="#0f172a"/>
+  <text x="28" y="40" class="h">How a frame moves through the pipeline</text>
+  <text x="28" y="62" class="s">one cycle per synchronized camera + LiDAR frame (41 Hz sensors on the robot)</text>
+
+  <!-- wires -->
+  <path class="ln" d="M178 120H230"/>
+  <path class="ln" d="M382 120H434"/>
+  <path class="ln" d="M307 154C307 220 330 280 434 280"/>
+  <path class="ln" d="M178 280H434"/>
+  <path class="ln" d="M586 120C622 120 622 186 646 186"/>
+  <path class="ln" d="M586 280C622 280 622 226 646 226"/>
+  <path class="ln" d="M808 206H836"/>
+
+  <!-- stereo camera -->
+  <rect x="28" y="86" width="150" height="68" rx="10" class="box pulse d1" stroke="#22d3ee"/>
+  <rect x="42" y="100" width="40" height="28" rx="3" fill="#0f172a" stroke="#334155"/>
+  <rect x="88" y="100" width="40" height="28" rx="3" fill="#0f172a" stroke="#334155"/>
+  <path d="M54 124l6-12 6 12z M100 124l6-12 6 12z" fill="#fb923c"/>
+  <text x="136" y="112" class="b">L</text><text x="136" y="128" class="b">R</text>
+  <text x="42" y="146" class="l">stereo frames</text>
+
+  <!-- yolo -->
+  <rect x="232" y="86" width="150" height="68" rx="10" class="box pulse d2" stroke="#22d3ee"/>
+  <text x="307" y="110" class="b" text-anchor="middle">YOLO-v3</text>
+  <rect x="262" y="118" width="22" height="22" fill="none" stroke="#34d399" stroke-width="1.5"/>
+  <rect x="294" y="122" width="18" height="18" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+  <rect x="322" y="116" width="26" height="24" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="307" y="172" class="m" text-anchor="middle">2D boxes + class</text>
+
+  <!-- triangulation -->
+  <rect x="436" y="86" width="150" height="68" rx="10" class="box pulse d3" stroke="#22d3ee"/>
+  <text x="511" y="110" class="b" text-anchor="middle">Triangulation</text>
+  <text x="511" y="130" class="l" text-anchor="middle">box centers L + R</text>
+  <text x="511" y="146" class="m" text-anchor="middle">→ camera xyz</text>
+
+  <!-- lidar -->
+  <rect x="28" y="246" width="150" height="68" rx="10" class="box pulse d1" stroke="#a78bfa"/>
+  <g fill="#a78bfa">
+    <circle cx="48" cy="266" r="1.6"/><circle cx="58" cy="272" r="1.6"/><circle cx="70" cy="262" r="1.6"/><circle cx="82" cy="270" r="1.6"/>
+    <circle cx="94" cy="264" r="1.6"/><circle cx="106" cy="274" r="1.6"/><circle cx="118" cy="266" r="1.6"/><circle cx="130" cy="272" r="1.6"/>
+    <circle cx="52" cy="282" r="1.6"/><circle cx="66" cy="286" r="1.6"/><circle cx="78" cy="280" r="1.6"/><circle cx="92" cy="288" r="1.6"/>
+    <circle cx="104" cy="282" r="1.6"/><circle cx="116" cy="290" r="1.6"/><circle cx="128" cy="284" r="1.6"/><circle cx="142" cy="278" r="1.6"/>
+  </g>
+  <text x="42" y="306" class="l">LiDAR point cloud</text>
+
+  <!-- frustum -->
+  <rect x="436" y="246" width="150" height="68" rx="10" class="box pulse d3" stroke="#a78bfa"/>
+  <path d="M452 280L500 262V298Z" fill="#a78bfa" fill-opacity=".18" stroke="#a78bfa"/>
+  <rect x="500" y="270" width="18" height="20" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="528" y="276" class="l">frustum</text>
+  <text x="528" y="292" class="l">+ cluster</text>
+  <text x="511" y="332" class="m" text-anchor="middle">→ LiDAR xyz (cuboid center)</text>
+  <text x="330" y="222" class="m">box → frustum</text>
+
+  <!-- kalman -->
+  <rect x="648" y="166" width="160" height="80" rx="10" fill="#14532d" stroke="#34d399" stroke-width="1.5" class="pulse d4"/>
+  <text x="728" y="192" class="b" text-anchor="middle">Kalman fusion</text>
+  <text x="728" y="211" class="l" text-anchor="middle">predict → LiDAR update</text>
+  <text x="728" y="228" class="l" text-anchor="middle">predict → camera update</text>
+
+  <!-- output -->
+  <rect x="838" y="166" width="96" height="80" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5" class="pulse d5"/>
+  <text x="886" y="192" class="b" text-anchor="middle">State</text>
+  <text x="886" y="212" class="m" text-anchor="middle">p  v  a</text>
+  <text x="886" y="232" class="m blink" text-anchor="middle">x y z</text>
+
+  <!-- moving packets: each is visible only while it travels -->
+  <g>
+    <circle r="5" fill="#22d3ee" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.2;1"><mpath xlink:href="#p1"/></animateMotion><animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.2;0.21;1"/></circle>
+    <circle r="5" fill="#a78bfa" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.45;1"><mpath xlink:href="#p4"/></animateMotion><animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="1;1;0;0" keyTimes="0;0.45;0.46;1"/></circle>
+    <circle r="5" fill="#34d399" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.2;0.4;1"><mpath xlink:href="#p2"/></animateMotion><animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.199;0.2;0.4;0.41;1"/></circle>
+    <circle r="5" fill="#fbbf24" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.2;0.45;1"><mpath xlink:href="#p3"/></animateMotion><animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.199;0.2;0.45;0.46;1"/></circle>
+    <circle r="5" fill="#22d3ee" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.55;0.75;1"><mpath xlink:href="#p5"/></animateMotion><animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.549;0.55;0.75;0.76;1"/></circle>
+    <circle r="5" fill="#a78bfa" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.55;0.75;1"><mpath xlink:href="#p6"/></animateMotion><animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.549;0.55;0.75;0.76;1"/></circle>
+    <circle r="5" fill="#fbbf24" opacity="0"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.85;0.95;1"><mpath xlink:href="#p7"/></animateMotion><animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.849;0.85;0.95;0.96;1"/></circle>
+  </g>
+
+  <text x="28" y="372" class="s">Code: detection/ (YOLO-v3) · calibration/ (camera ↔ LiDAR transform) · fusion/realtime_fusion.m + sensor_fusion.m</text>
+</svg>

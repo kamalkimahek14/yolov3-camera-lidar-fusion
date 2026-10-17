@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420" role="img" aria-labelledby="t d">
+  <title id="t">Kalman filter loop used for camera-LiDAR fusion</title>
+  <desc id="d">Each frame runs predict, update with the LiDAR position, predict again, then update with the camera position. The state holds position, velocity and acceleration on x, y and z with a constant-acceleration model. If a sensor gives no measurement, the prediction is kept for that step.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+    <style>
+      text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#e2e8f0}
+      .h{font-size:20px;font-weight:600}
+      .s{font-size:13px;fill:#94a3b8}
+      .b{font-size:14px;font-weight:600}
+      .l{font-size:12px;fill:#cbd5e1}
+      .e{font-size:13px;fill:#e2e8f0;font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-style:italic}
+      .k{font-size:12px;font-weight:600;letter-spacing:.08em;fill:#94a3b8}
+      .ln{stroke:#94a3b8;stroke-width:1.8;fill:none;marker-end:url(#a)}
+    </style>
+  </defs>
+  <rect width="960" height="420" rx="16" fill="#0f172a"/>
+  <text x="28" y="40" class="h">Kalman filter loop (fusion/sensor_fusion.m)</text>
+  <text x="28" y="62" class="s">centralized linear Kalman filter, constant-acceleration model, sequential sensor updates</text>
+
+  <!-- loop -->
+  <rect x="40" y="96" width="190" height="70" rx="12" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="135" y="124" class="b" text-anchor="middle">1 · Predict</text>
+  <text x="135" y="146" class="e" text-anchor="middle">x⁻ = F x,  P⁻ = F P Fᵀ + Q</text>
+
+  <rect x="320" y="96" width="210" height="70" rx="12" fill="#3b0764" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="425" y="124" class="b" text-anchor="middle">2 · Update with LiDAR</text>
+  <text x="425" y="146" class="l" text-anchor="middle">z = cuboid center, R = R_LiDAR</text>
+
+  <rect x="320" y="270" width="210" height="70" rx="12" fill="#1e293b" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="425" y="298" class="b" text-anchor="middle">3 · Predict</text>
+  <text x="425" y="320" class="e" text-anchor="middle">x⁻ = F x,  P⁻ = F P Fᵀ + Q</text>
+
+  <rect x="40" y="270" width="190" height="70" rx="12" fill="#164e63" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="135" y="298" class="b" text-anchor="middle">4 · Update with camera</text>
+  <text x="135" y="320" class="l" text-anchor="middle">z = triangulated xyz, R = R_camera</text>
+
+  <path class="ln" d="M230 131H318"/>
+  <path class="ln" d="M425 166V268"/>
+  <path class="ln" d="M320 305H232"/>
+  <path class="ln" d="M135 270V168"/>
+  <text x="145" y="224" class="l">next frame</text>
+  <text x="435" y="224" class="l">same frame</text>
+
+  <circle cx="280" cy="218" r="36" fill="#14532d" stroke="#34d399" stroke-width="1.5"/>
+  <text x="280" y="214" class="b" text-anchor="middle">x̂</text>
+  <text x="280" y="232" class="l" text-anchor="middle">p · v · a</text>
+
+  <!-- equations panel -->
+  <rect x="580" y="86" width="352" height="296" rx="12" fill="#111827" stroke="#334155"/>
+  <text x="600" y="114" class="k">STATE</text>
+  <text x="600" y="138" class="e">x = [x, ẋ, ẍ, y, ẏ, ÿ, z, ż, z̈]ᵀ   (9 states)</text>
+  <text x="600" y="172" class="k">MODEL</text>
+  <text x="600" y="196" class="e">F = blkdiag(f, f, f),  f = [1  Δt  Δt²/2; 0  1  Δt; 0  0  1]</text>
+  <text x="600" y="220" class="e">H picks x, y, z  (3 × 9)</text>
+  <text x="600" y="254" class="k">UPDATE</text>
+  <text x="600" y="278" class="e">K = P⁻Hᵀ (H P⁻ Hᵀ + R)⁻¹</text>
+  <text x="600" y="302" class="e">x = x⁻ + K (z − H x⁻)</text>
+  <text x="600" y="326" class="e">P = (I − K H) P⁻</text>
+  <text x="600" y="358" class="l">missing measurement → keep the prediction (x = x⁻)</text>
+
+  <text x="28" y="400" class="s">R_LiDAR and R_camera come from the sensor calibration step (calibration/camera_lidar_calibration.m).</text>
+</svg>

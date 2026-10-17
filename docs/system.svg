@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="960" height="360" role="img" aria-labelledby="t d">
+  <title id="t">Training and on-robot system</title>
+  <desc id="d">Top: a labeled dataset of 10,989 images in four classes, anchor boxes from k-means, and YOLO-v3 transfer learning with SGDM. Bottom: the wheeled robot with a stereo camera and LiDAR synchronized at 41 Hz, onboard Intel NUC, and a GTX 1050 GPU running detection and fusion.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+    <style>
+      text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#e2e8f0}
+      .h{font-size:20px;font-weight:600}
+      .k{font-size:12px;font-weight:600;letter-spacing:.08em;fill:#94a3b8}
+      .b{font-size:14px;font-weight:600}
+      .l{font-size:12px;fill:#cbd5e1}
+      .ln{stroke:#94a3b8;stroke-width:1.8;fill:none;marker-end:url(#a)}
+      .c{fill:#1e293b}
+    </style>
+  </defs>
+  <rect width="960" height="360" rx="16" fill="#0f172a"/>
+  <text x="28" y="40" class="h">System overview</text>
+
+  <text x="28" y="78" class="k">TRAINING</text>
+  <rect x="28" y="90" width="200" height="74" rx="10" class="c" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="44" y="114" class="b">Labeled dataset</text>
+  <text x="44" y="134" class="l">10,989 images · 4 shapes</text>
+  <text x="44" y="151" class="l">98% train · 2% test</text>
+  <rect x="268" y="90" width="200" height="74" rx="10" class="c" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="284" y="114" class="b">Anchor boxes</text>
+  <text x="284" y="134" class="l">k-means on ground truth</text>
+  <text x="284" y="151" class="l">mean IoU 0.8738</text>
+  <rect x="508" y="90" width="200" height="74" rx="10" class="c" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="524" y="114" class="b">YOLO-v3 transfer learning</text>
+  <text x="524" y="134" class="l">SGDM · 11,000 iterations</text>
+  <text x="524" y="151" class="l">warm-up + step LR decay</text>
+  <rect x="748" y="90" width="184" height="74" rx="10" fill="#14532d" stroke="#34d399" stroke-width="1.5"/>
+  <text x="764" y="114" class="b">Trained detector</text>
+  <text x="764" y="134" class="l">96.25% test accuracy</text>
+  <text x="764" y="151" class="l">59 ms per frame (test)</text>
+  <path class="ln" d="M228 127H266"/>
+  <path class="ln" d="M468 127H506"/>
+  <path class="ln" d="M708 127H746"/>
+
+  <text x="28" y="214" class="k">ON THE ROBOT</text>
+  <rect x="28" y="226" width="200" height="94" rx="10" class="c" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="44" y="250" class="b">Optical sensors</text>
+  <text x="44" y="270" class="l">Stereo: 2 × Sony IMX179</text>
+  <text x="44" y="287" class="l">LiDAR: Intel RealSense L515</text>
+  <text x="44" y="304" class="l">synchronized at 41 Hz</text>
+  <rect x="268" y="226" width="200" height="94" rx="10" class="c" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="284" y="250" class="b">Calibration</text>
+  <text x="284" y="270" class="l">intrinsic: camera, LiDAR</text>
+  <text x="284" y="287" class="l">extrinsic: camera ↔ LiDAR</text>
+  <text x="284" y="304" class="l">→ noise covariances R</text>
+  <rect x="508" y="226" width="200" height="94" rx="10" class="c" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="524" y="250" class="b">Compute</text>
+  <text x="524" y="270" class="l">Intel NUC onboard the rover</text>
+  <text x="524" y="287" class="l">runs on NVIDIA GTX 1050 GPU</text>
+  <text x="524" y="304" class="l">GPU-accelerated pipeline</text>
+  <rect x="748" y="226" width="184" height="94" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="764" y="250" class="b">Per-object output</text>
+  <text x="764" y="270" class="l">class + confidence</text>
+  <text x="764" y="287" class="l">distance, velocity,</text>
+  <text x="764" y="304" class="l">acceleration</text>
+  <path class="ln" d="M228 273H266"/>
+  <path class="ln" d="M468 273H506"/>
+  <path class="ln" d="M708 273H746"/>
+  <path class="ln" d="M840 164V224"/>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 330" width="960" height="330" role="img" aria-labelledby="t d">
+  <title id="t">Average precision per class on the test set</title>
+  <desc id="d">Average precision on the held-out test batch: pyramid 1.00 over 75 objects, cylinder 0.97 over 116, box 0.97 over 31, traffic cone 0.91 over 41. The network never confused one class for another.</desc>
+  <style>
+    text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#e2e8f0}
+    .h{font-size:20px;font-weight:600}
+    .s{font-size:13px;fill:#94a3b8}
+    .a{font-size:12px;fill:#94a3b8}
+    .l{font-size:14px;fill:#e2e8f0;font-weight:600}
+    .v{font-size:14px;font-weight:700}
+    .g{stroke:#1e293b;stroke-width:1}
+    .ax{stroke:#475569;stroke-width:1.2}
+  </style>
+  <rect width="960" height="330" rx="16" fill="#0f172a"/>
+  <text x="28" y="40" class="h">Average precision per class (test batch, 2% held out)</text>
+  <text x="28" y="62" class="s">thesis Fig. "Overall Precision of Test Batch"; object counts from the test confusion chart</text>
+
+  <!-- grid: 0..1 over x 200..800 -->
+  <g class="g">
+    <line x1="350" y1="84" x2="350" y2="270"/><line x1="500" y1="84" x2="500" y2="270"/><line x1="650" y1="84" x2="650" y2="270"/>
+  </g>
+  <line x1="800" y1="84" x2="800" y2="270" stroke="#475569" stroke-dasharray="3 4"/>
+  <line x1="200" y1="84" x2="200" y2="270" class="ax"/>
+  <g class="a" text-anchor="middle">
+    <text x="200" y="290">0</text><text x="350" y="290">0.25</text><text x="500" y="290">0.50</text><text x="650" y="290">0.75</text><text x="800" y="290">1.00</text>
+  </g>
+
+  <text x="186" y="113" class="l" text-anchor="end">Pyramid</text>
+  <rect x="200" y="96" width="600" height="26" rx="4" fill="#34d399"/>
+  <text x="812" y="114" class="v">1.00</text><text x="856" y="114" class="a">75 objects</text>
+
+  <text x="186" y="157" class="l" text-anchor="end">Cylinder</text>
+  <rect x="200" y="140" width="582" height="26" rx="4" fill="#22d3ee"/>
+  <text x="812" y="158" class="v">0.97</text><text x="856" y="158" class="a">116 objects</text>
+
+  <text x="186" y="201" class="l" text-anchor="end">Box</text>
+  <rect x="200" y="184" width="582" height="26" rx="4" fill="#22d3ee"/>
+  <text x="812" y="202" class="v">0.97</text><text x="856" y="202" class="a">31 objects</text>
+
+  <text x="186" y="245" class="l" text-anchor="end">Traffic cone</text>
+  <rect x="200" y="228" width="546" height="26" rx="4" fill="#a78bfa"/>
+  <text x="812" y="246" class="v">0.91</text><text x="856" y="246" class="a">41 objects</text>
+
+  <text x="28" y="316" class="s">201 of 220 test images detected correctly · mean IoU 0.8157 · 59 ms per frame · no class was ever mistaken for another</text>
+</svg>
