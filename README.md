@@ -6,7 +6,7 @@ A wheeled robot detects four shapes in real time with a YOLO-v3 network that I r
 
 [Thesis report (LaTeX + PDF)](https://github.com/kamalkimahek14/MS-Thesis-Report) · [Defense slides](https://github.com/kamalkimahek14/MS-Thesis-Presentation) · [Portfolio: kamal-mehta.com](https://kamal-mehta.com)
 
-*Thesis title: Object Classification, Detection and State Estimation using YOLO v3 Deep Neural Network and Sensor Fusion of Stereo Camera and LiDAR. Supervised by Dr. Kamesh Subbarao, Aerospace System Laboratory.*
+*Thesis title: Object Classification, Detection and State Estimation using YOLO v3 Deep Neural Network and Sensor Fusion of Stereo Camera and LiDAR. Supervised by Dr. Kamesh Subbarao, Aerospace Systems Laboratory.*
 
 ![Animated pipeline: camera and LiDAR frames, YOLO boxes, 3D frustums, Kalman fusion, position, velocity and acceleration](docs/pipeline-animated.svg)
 
@@ -58,7 +58,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 | Result | Value |
 |---|---|
 | Training / testing accuracy | 99.08% / 96.25% |
-| Test images detected correctly | 201 of 220, with no confusion between classes |
+| Test images with every object found (image-level) | 201 of 220, with no confusion between classes |
 | Mean IoU on the test set | 0.8157 |
 | Average detection time (test) | 59 ms per frame |
 | Mean IoU of the estimated anchor boxes | 0.8738 |
@@ -112,7 +112,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 - **Original 2021 thesis code:** every script outside `detection/yolov3/` starts with the line `% Original MS thesis code (2021)`. I changed only file names, data paths, comments and five small fixes while preparing this repository (see [Notes](#notes)).
 - **YOLO v3 helpers, 2026:** in 2021 the training and detection scripts called helper functions from a MathWorks example, which this repository cannot redistribute. I rewrote those helpers in `detection/yolov3/` from the YOLO v3 paper (Redmon & Farhadi, 2018) and the MATLAB function reference, with the same function names and arguments, so the thesis scripts call them unchanged.
-- **Status:** the helper functions in `detection/yolov3/` were rewritten in 2026 to replace third-party example code and have not yet been run end-to-end in MATLAB. `detection/yolov3/test_yolov3_helpers.m` holds self-checks for box encoding and decoding, the ignore rule, preprocessing, mirroring and the learning-rate schedule; run it first.
+- **Verification:** `detection/yolov3/test_yolov3_helpers.m` self-checks box encoding and decoding, the ignore rule, preprocessing, mirroring and the learning-rate schedule; run it first. A full end-to-end MATLAB training run with the 2026 helpers is the next step.
 - **Retrain:** the new helpers lay out each head's output as `[tx ty tw th to class_1 … class_C]` per anchor. A network trained in 2021 with the example helpers uses a different layout, so train a new one with `train_yolov3`.
 
 ## Run each step
