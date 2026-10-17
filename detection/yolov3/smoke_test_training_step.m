@@ -1,7 +1,7 @@
 % Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
 %
 % smoke_test_training_step  Builds the YOLO v3 network the way train_yolov3 does,
-% then runs three training steps on random images with made-up boxes. It needs
+% then runs five training steps on random images with made-up boxes. It needs
 % no dataset; it checks that the network builds, the loss is finite, the
 % gradients flow, and the loss falls when the same batch is repeated.
 % Needs Deep Learning Toolbox, its SqueezeNet support package and Image
@@ -32,8 +32,11 @@ X = dlarray(single(rand([networkInputSize 2])), 'SSCB');
 groundTruth = {[50 60 40 50 1]; [100 80 30 30 3; 20 20 25 40 2]};
 
 velocity = [];
-losses = zeros(1, 3);
-for step = 1:3
+% A small fixed learning rate stands in for the warm-up of train_yolov3: at the
+% full rate of 1e-4 an untrained network takes too large a first step.
+learnRate = 1e-6;
+losses = zeros(1, 5);
+for step = 1:5
     [gradients, loss, state] = dlfeval(@modelGradients, net, X, groundTruth, ...
         anchorBoxes, anchorBoxMasks, 0.5, networkOutputs);
     losses(step) = double(extractdata(loss.totalLoss));
@@ -41,11 +44,11 @@ for step = 1:3
     g = gradients.Value;
     assert(all(cellfun(@(v) all(isfinite(extractdata(v)), 'all'), g)), 'gradients must be finite');
     assert(any(cellfun(@(v) any(extractdata(v) ~= 0, 'all'), g)), 'gradients must not all be zero');
-    [net, velocity] = sgdmupdate(net, gradients, velocity, 1e-4);
+    [net, velocity] = sgdmupdate(net, gradients, velocity, learnRate);
     net.State = state;
 end
 fprintf('Training-step losses on one repeated batch: %s\n', mat2str(losses, 5));
-assert(losses(3) < losses(1), 'the loss should fall on a repeated batch');
+assert(all(diff(losses) < 0) && losses(end) < losses(1) / 10, 'the loss should fall steadily on a repeated batch');
 
 % Detection runs too when Computer Vision Toolbox is present (non-maximum suppression)
 if exist('selectStrongestBboxMulticlass', 'file')
@@ -53,4 +56,4 @@ if exist('selectStrongestBboxMulticlass', 'file')
         anchorBoxes, anchorBoxMasks, 0.01, 0.5, classNames);
     fprintf('Detection ran: %d boxes before training on real data.\n', size(bboxes, 1));
 end
-disp('Smoke test passed: the network builds, trains for three steps, and the loss falls.');
+disp('Smoke test passed: the network builds, trains for five steps, and the loss falls.');
