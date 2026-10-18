@@ -55,8 +55,8 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 | Result | Value |
 |---|---|
-| Training / testing accuracy | 99.08% / 96.25% |
-| Test images with every object found (image-level) | 201 of 220, with no confusion between classes |
+| mAP across 4 classes, training / held-out test batch (the thesis table lists these as training / testing accuracy) | 99.08% / 96.25% |
+| Images with every object found (test batch) | 201 of 220, with no confusion between classes |
 | Mean IoU on the test set | 0.8157 |
 | Average detection time (test) | 59 ms per frame |
 | Mean IoU of the estimated anchor boxes | 0.8738 |
@@ -96,7 +96,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 ## Requirements
 
-- **MATLAB R2020b or later.** I built and ran everything in R2020b.
+- **MATLAB R2020b or later.** The 2021 thesis scripts ran in R2020b; `fusion/realtime_fusion.m` needs R2021a or later (below).
 - Toolboxes: Deep Learning, Computer Vision, Image Processing, Lidar, Automated Driving (driving scenario), Sensor Fusion and Tracking, and Parallel Computing (GPU training and inference).
 - Support packages: *Deep Learning Toolbox Model for SqueezeNet Network*, *MATLAB Support Package for USB Webcams*, and the Intel RealSense SDK 2.0 MATLAB wrapper for the live LiDAR scripts. `utils/rosbag_to_pcd.m` also needs ROS Toolbox.
 - Hardware for the live scripts: two USB cameras (the scripts open `webcam(2)` and `webcam(3)`), an Intel RealSense L515, and a CUDA GPU. I used a GTX 1050.
