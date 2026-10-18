@@ -2,7 +2,7 @@
 
 **MATLAB source code of my Master's thesis in Aerospace Engineering, The University of Texas at Arlington (2021).**
 
-A wheeled robot detects four shapes live on the robot (about 1.44 s a frame for detection and position estimation on a GTX 1050; 59 ms average detection time per image in the offline test batch) with a YOLO-v3 network that I retrained by transfer learning on 10,989 labeled images. It locates each object twice, by stereo triangulation and by clustering the LiDAR points inside a 3D frustum cast from the camera box. A linear Kalman filter then fuses both positions and estimates position, velocity and acceleration. This repository holds the code for every step: training, calibration, LiDAR processing, live fusion on the robot, and the driving-scenario simulation.
+A wheeled robot detects four shapes (about 1.44 s a frame live on a GTX 1050 for detection and position estimation; 59 ms average detection time per image offline) with a YOLO-v3 network that I retrained by transfer learning on 10,989 labeled images. It locates each object twice, by stereo triangulation and by clustering the LiDAR points inside a 3D frustum cast from the camera box. A linear Kalman filter then fuses both positions and estimates position, velocity and acceleration. This repository holds the code for every step: training, calibration, LiDAR processing, live fusion on the robot, and the driving-scenario simulation.
 
 [Thesis report (LaTeX + PDF)](https://github.com/kamalkimahek14/MS-Thesis-Report) · [Thesis slides](https://github.com/kamalkimahek14/MS-Thesis-Presentation) · [Portfolio: kamal-mehta.com](https://kamal-mehta.com/?r=github)
 
