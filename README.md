@@ -4,7 +4,7 @@
 
 A wheeled robot detects four shapes in real time with a YOLO-v3 network that I retrained by transfer learning on 10,989 labeled images. It locates each object twice, by stereo triangulation and by clustering the LiDAR points inside a 3D frustum cast from the camera box. A linear Kalman filter then fuses both positions and estimates position, velocity and acceleration. This repository holds the code for every step: training, calibration, LiDAR processing, real-time fusion on the robot, and the driving-scenario simulation.
 
-[Thesis report (LaTeX + PDF)](https://github.com/kamalkimahek14/MS-Thesis-Report) · [Defense slides](https://github.com/kamalkimahek14/MS-Thesis-Presentation) · [Portfolio: kamal-mehta.com](https://kamal-mehta.com)
+[Thesis report (LaTeX + PDF)](https://github.com/kamalkimahek14/MS-Thesis-Report) · [Thesis slides, full deck](https://github.com/kamalkimahek14/MS-Thesis-Presentation) · [Portfolio: kamal-mehta.com](https://kamal-mehta.com/?r=github)
 
 *Thesis title: Object Classification, Detection and State Estimation using YOLO v3 Deep Neural Network and Sensor Fusion of Stereo Camera and LiDAR. Supervised by Dr. Kamesh Subbarao, Aerospace Systems Laboratory.*
 
@@ -220,7 +220,7 @@ yolov3-camera-lidar-fusion/
 ## Related
 
 - **[MS-Thesis-Report](https://github.com/kamalkimahek14/MS-Thesis-Report)**: the full thesis, LaTeX source and PDF.
-- **[MS-Thesis-Presentation](https://github.com/kamalkimahek14/MS-Thesis-Presentation)**: the defense slides.
+- **[MS-Thesis-Presentation](https://github.com/kamalkimahek14/MS-Thesis-Presentation)**: the full slide deck; MS-Thesis-Presentation-Compact is the deck as delivered.
 - **[kamal-mehta.com](https://kamal-mehta.com/?r=github)**: my portfolio.
 
 ## Citation
