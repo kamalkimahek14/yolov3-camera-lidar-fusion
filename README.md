@@ -106,7 +106,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 ## Original thesis code and 2026 helpers
 
 - **Original 2021 thesis code:** every script outside `detection/yolov3/` starts with the line `% Original MS thesis code (2021)`.
-- **YOLO v3 helpers, 2026:** `detection/yolov3/` holds my implementation of the YOLO v3 network heads, targets, loss, decoding and data preparation, written from the YOLO v3 paper (Redmon & Farhadi, 2018). The thesis scripts call these functions by name.
+- **YOLO v3 helpers, 2026:** `detection/yolov3/` holds the YOLO v3 network heads, targets, loss, decoding and data preparation, implemented from the YOLO v3 paper (Redmon & Farhadi, 2018) and verified in MATLAB. The thesis scripts call these functions by name.
 - **Verified in MATLAB R2026b (October 2026):** `detection/yolov3/test_yolov3_helpers.m` passes (box overlap, box encoding and decoding, the ignore rule, preprocessing, mirroring, learning-rate schedule), and `detection/yolov3/smoke_test_training_step.m` builds the full network and trains five steps on a random batch, with the loss falling from 15,377 to 366. Run both first; a full training run on the thesis dataset is the next step.
 - **Train:** each head's output is laid out as `[tx ty tw th to class_1 … class_C]` per anchor; train a network with `train_yolov3`.
 
