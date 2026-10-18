@@ -55,7 +55,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 | Result | Value |
 |---|---|
-| Training accuracy · test mAP, 4 classes (the thesis table lists both as accuracy) | 99.08% · 96.25% |
+| Training accuracy · test mAP@0.5, 4 classes (the thesis table lists both as accuracy) | 99.08% · 96.25% |
 | Images with every object found (test batch) | 201 of 220, with no confusion between classes |
 | Mean IoU on the test set | 0.8157 |
 | Average detection time (test) | 59 ms per frame |
