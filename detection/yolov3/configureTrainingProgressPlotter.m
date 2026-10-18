@@ -1,5 +1,5 @@
 function [lossLine, rateLine] = configureTrainingProgressPlotter(fig)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % configureTrainingProgressPlotter  Live plots of total loss and learning rate.
 %   fig      : figure handle to draw in (it is cleared)

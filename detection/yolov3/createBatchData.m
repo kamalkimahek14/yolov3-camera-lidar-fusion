@@ -1,5 +1,5 @@
 function [X, groundTruth] = createBatchData(data, classNames)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % createBatchData  Stack one mini-batch for the custom training loop.
 %   data        : B-by-3 cell of preprocessed rows {image, boxes, labels}

@@ -1,5 +1,5 @@
 function lgraph = addFirstDetectionHead(lgraph, anchorMask, numPredictorsPerAnchor)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % addFirstDetectionHead  Coarse-grid head (large anchors), added unconnected.
 %   anchorMask             : rows of anchorBoxes this head predicts

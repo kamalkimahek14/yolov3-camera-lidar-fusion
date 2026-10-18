@@ -1,5 +1,5 @@
 function targets = buildYolov3Targets(decoded, groundTruth, inputSize, anchorBoxes, anchorBoxMasks, numClasses, ignoreThreshold)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % buildYolov3Targets  Training targets and masks for every head.
 %   decoded        : 1-by-K cell, decoded{k} = decodeHeadBoxes output for head k

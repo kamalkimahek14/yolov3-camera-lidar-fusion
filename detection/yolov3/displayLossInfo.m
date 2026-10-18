@@ -1,5 +1,5 @@
 function displayLossInfo(iteration, lr, loss)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % displayLossInfo  Print one line of training progress.
 %   loss : struct from modelGradients (totalLoss, boxLoss, objLoss, clsLoss)

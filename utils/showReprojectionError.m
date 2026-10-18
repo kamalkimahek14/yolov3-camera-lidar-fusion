@@ -1,5 +1,5 @@
 function showReprojectionError(err)
-% Written 2026 by Kamal Mehta; MIT.
+% Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % showReprojectionError  Plots the camera and LiDAR reprojection errors from the
 % calibration scripts: one histogram per sensor, with the mean and one standard

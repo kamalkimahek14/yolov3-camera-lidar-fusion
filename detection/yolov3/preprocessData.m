@@ -1,5 +1,5 @@
 function data = preprocessData(data, targetSize)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % preprocessData  Resize images to the network input and scale pixels to [0, 1].
 % Two call forms, both used by the thesis scripts:

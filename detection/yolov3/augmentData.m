@@ -1,5 +1,5 @@
 function data = augmentData(data)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % augmentData  Random photometric and mirror augmentation of training rows.
 %   data : datastore rows {image, boxes, labels}, boxes as [x y w h] pixels

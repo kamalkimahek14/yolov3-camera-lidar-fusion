@@ -1,4 +1,4 @@
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % test_yolov3_helpers  Self-checks for the helpers that need no trained network.
 % Run from the repository root after addpath(genpath(pwd)). Needs Image

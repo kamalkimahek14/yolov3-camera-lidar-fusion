@@ -1,5 +1,5 @@
 function lgraph = squeezenetFeatureExtractor(net, inputSize)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % squeezenetFeatureExtractor  Backbone for the detector: SqueezeNet up to 'fire9-concat'.
 %   net       : pretrained network from squeezenet()

@@ -1,5 +1,5 @@
 function boxes = decodeHeadBoxes(t, anchors, inputSize)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % decodeHeadBoxes  Turn raw box terms of one head into [x y w h] boxes in pixels.
 %   t         : numeric h-by-w-by-5-by-A-by-B, raw [tx ty tw th to] (see splitHeadOutput)

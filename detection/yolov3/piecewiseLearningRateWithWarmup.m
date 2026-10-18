@@ -1,5 +1,5 @@
 function lr = piecewiseLearningRateWithWarmup(iteration, baseRate, warmupPeriod, numIterations)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % piecewiseLearningRateWithWarmup  Learning rate for one iteration.
 % Reproduces the schedule recorded in the 2021 training log of the thesis:

@@ -1,5 +1,5 @@
 function [bboxes, scores, labels] = yolov3Detect(net, X, networkOutputs, anchorBoxes, anchorBoxMasks, confidenceThreshold, overlapThreshold, classNames)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % yolov3Detect  Detect objects in one image with a trained YOLO v3 dlnetwork.
 %   X                  : h-by-w-by-3-by-1 dlarray, format 'SSCB', pixels in [0, 1]

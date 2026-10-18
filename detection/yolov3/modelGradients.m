@@ -1,5 +1,5 @@
 function [gradients, loss, state] = modelGradients(net, X, groundTruth, anchorBoxes, anchorBoxMasks, ignoreThreshold, networkOutputs)
-% Written 2026 by Kamal Mehta as an independent implementation of YOLO v3 (Redmon & Farhadi, 2018); MIT.
+% YOLO v3 (Redmon & Farhadi, 2018). Copyright (c) 2026 Kamal Mehta. MIT License.
 %
 % modelGradients  YOLO v3 loss and its gradients for one mini-batch.
 % Call it through dlfeval:
