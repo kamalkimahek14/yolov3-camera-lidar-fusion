@@ -221,7 +221,7 @@ yolov3-camera-lidar-fusion/
 
 - **[MS-Thesis-Report](https://github.com/kamalkimahek14/MS-Thesis-Report)**: the full thesis, LaTeX source and PDF.
 - **[MS-Thesis-Presentation](https://github.com/kamalkimahek14/MS-Thesis-Presentation)**: the defense slides.
-- **[kamal-mehta.com](https://kamal-mehta.com)**: my portfolio.
+- **[kamal-mehta.com](https://kamal-mehta.com/?r=github)**: my portfolio.
 
 ## Citation
 
