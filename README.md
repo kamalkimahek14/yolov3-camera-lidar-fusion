@@ -55,15 +55,17 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 | Result | Value |
 |---|---|
-| Training accuracy · test mAP@0.5, 4 classes (the thesis table lists both as accuracy) | 99.08% · 96.25% |
+| Training accuracy · test mAP@0.5, 4 classes (the thesis table lists both as accuracy; test = a random 2% frame-level split of the same recordings) | 99.08% · 96.25% |
 | Images with every object found (test batch) | 201 of 220, with no confusion between classes |
 | Mean IoU on the test set | 0.8157 |
-| Average detection time (test) | 59 ms per frame |
+| Average detection time (offline test batch, detector only) | 59 ms per image |
+| Detection and position estimation, live on the robot | about 1.44 s a frame on a GTX 1050 |
 | Mean IoU of the estimated anchor boxes | 0.8738 |
 | Camera intrinsic re-projection error | 0.37 pixels |
 | Extrinsic re-projection error | 29.5 mm (camera → LiDAR), −29.42 mm (LiDAR → camera) |
-| Fused position error in simulation | 0.42 m, 56% lower than the camera alone (0.97 m) |
-| Sensor rate on the robot | 41 Hz, camera and LiDAR synchronized |
+| Mean position error in simulation, fused | 0.42 m, 56% lower than the camera alone (0.97 m) |
+| LiDAR alone, same simulation | 0.29 m, but with no class label |
+| Sensor rate on the robot (input, not processing) | 41 Hz, camera and LiDAR synchronized |
 | Training time | 7–8 hours on GPU |
 
 ![Average precision per class on the test batch](docs/ap-per-class.svg)
