@@ -2,7 +2,7 @@
 
 **MATLAB source code of my Master's thesis in Aerospace Engineering, The University of Texas at Arlington (2021).**
 
-A wheeled robot detects four shapes in real time with a YOLO-v3 network that I retrained by transfer learning on 10,989 labeled images. It locates each object twice, by stereo triangulation and by clustering the LiDAR points inside a 3D frustum cast from the camera box. A linear Kalman filter then fuses both positions and estimates position, velocity and acceleration. This repository holds the code for every step: training, calibration, LiDAR processing, real-time fusion on the robot, and the driving-scenario simulation.
+A wheeled robot detects four shapes live on the robot (about 1.44 s a frame for detection and position estimation on a GTX 1050; 59 ms average detection time per image in the offline test batch) with a YOLO-v3 network that I retrained by transfer learning on 10,989 labeled images. It locates each object twice, by stereo triangulation and by clustering the LiDAR points inside a 3D frustum cast from the camera box. A linear Kalman filter then fuses both positions and estimates position, velocity and acceleration. This repository holds the code for every step: training, calibration, LiDAR processing, live fusion on the robot, and the driving-scenario simulation.
 
 [Thesis report (LaTeX + PDF)](https://github.com/kamalkimahek14/MS-Thesis-Report) · [Thesis slides](https://github.com/kamalkimahek14/MS-Thesis-Presentation) · [Portfolio: kamal-mehta.com](https://kamal-mehta.com/?r=github)
 
@@ -41,7 +41,7 @@ A wheeled robot detects four shapes in real time with a YOLO-v3 network that I r
 
 ![Kalman filter predict and update loop with sequential LiDAR and camera updates](docs/kalman-loop.svg)
 
-The real-time filter in `fusion/sensor_fusion.m` uses these noise settings, taken from the calibration step:
+The live filter in `fusion/sensor_fusion.m` uses these noise settings, taken from the calibration step:
 
 | Matrix | Diagonal (x, y, z) |
 |---|---|
@@ -88,7 +88,7 @@ All numbers come from the thesis (Chapters 2 and 7).
 | [`detection/yolov3/`](detection/yolov3/) | Holds the YOLO v3 helpers the thesis scripts call: network heads, targets, loss, decoding with NMS, preprocessing and augmentation (2026). |
 | [`calibration/`](calibration/) | Calibrates the stereo camera, measures camera and LiDAR errors, and estimates the camera ↔ LiDAR transform. |
 | [`lidar/`](lidar/) | Streams the RealSense L515 point cloud, crops a region of interest, clusters points and fits cuboids. |
-| [`fusion/`](fusion/) | Runs the real-time loop on the robot and holds the Kalman filter; `prototypes/` holds the first synthetic filter tests. |
+| [`fusion/`](fusion/) | Runs the live loop on the robot and holds the Kalman filter; `prototypes/` holds the first synthetic filter tests. |
 | [`simulation/`](simulation/) | Builds the driving scenario, estimates simulated sensor errors, and runs the fusion filter against ground truth. |
 | [`utils/`](utils/) | Prepares data: video to frames, rounding of label boxes, ROS bag to PCD. |
 | [`sample_data/`](sample_data/) | Holds one stereo calibration pair and the small calibration, transform and covariance files the scripts load. |
@@ -132,7 +132,7 @@ Set up once:
 | Extrinsic transform from board corners | `calibration/` | `extrinsic_from_corners` | sample data included |
 | Stream and crop the point cloud | `lidar/` | `stream_pointcloud_roi` | L515 |
 | Cluster a saved point cloud | `lidar/` | `cluster_and_fit_cuboids` | a `1.pcd` frame |
-| Real-time detection and fusion | `fusion/` | `realtime_fusion` | `YOLOv3net.mat`, L515, two cameras |
+| Live detection and fusion | `fusion/` | `realtime_fusion` | `YOLOv3net.mat`, L515, two cameras |
 | Synthetic filter tests | `fusion/prototypes/` | `fusion_constant_acceleration` | nothing |
 | Simulated fusion | `simulation/` | `run_fusion_simulation` | sample data included |
 | Simulated sensor errors | `simulation/` | `allData = struct2table(DrivingScene); estimate_sensor_error` | nothing |
