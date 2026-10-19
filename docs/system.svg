@@ -31,7 +31,7 @@
   <text x="524" y="151" class="l">warm-up + step LR decay</text>
   <rect x="748" y="90" width="184" height="74" rx="10" fill="#14532d" stroke="#34d399" stroke-width="1.5"/>
   <text x="764" y="114" class="b">Trained detector</text>
-  <text x="764" y="134" class="l">96.25% test accuracy</text>
+  <text x="764" y="134" class="l">96.25% test mAP@0.5</text>
   <text x="764" y="151" class="l">59 ms per frame (test)</text>
   <path class="ln" d="M228 127H266"/>
   <path class="ln" d="M468 127H506"/>

@@ -55,14 +55,15 @@ All numbers come from the thesis (Chapters 2 and 7).
 
 | Result | Value |
 |---|---|
-| Training accuracy · test mAP@0.5, 4 classes (the thesis table lists both as accuracy; test = a random 2% frame-level split of the same recordings) | 99.08% · 96.25% |
-| Images with every object found (test batch) | 201 of 220, with no confusion between classes |
+| Test mAP@0.5, 4 classes (random 2% frame-level test split of the same recordings; per-class AP: pyramid 1.00, cylinder 0.97, box 0.97, traffic cone 0.91) | 96.25% |
+| Training accuracy, as reported in the thesis | 99.08% |
+| Test images detected correctly | 201 of 220, with no confusion between classes |
 | Mean IoU on the test set | 0.8157 |
 | Average detection time (offline test batch, detector only) | 59 ms per image |
 | Detection and position estimation, live on the robot | about 1.44 s a frame on a GTX 1050 |
 | Mean IoU of the estimated anchor boxes | 0.8738 |
 | Camera intrinsic re-projection error | 0.37 pixels |
-| Extrinsic re-projection error | 29.5 mm (camera → LiDAR), −29.42 mm (LiDAR → camera) |
+| Extrinsic re-projection error (magnitude) | 29.5 mm (camera → LiDAR), 29.42 mm (LiDAR → camera) |
 | Mean position error in simulation, fused | 0.42 m, 56% lower than the camera alone (0.97 m) |
 | LiDAR alone, same simulation | 0.29 m, but with no class label |
 | Sensor rate on the robot (input, not processing) | 41 Hz, camera and LiDAR synchronized |
@@ -110,8 +111,8 @@ All numbers come from the thesis (Chapters 2 and 7).
 - **Original 2021 thesis code:** every script outside `detection/yolov3/` starts with the line `% Original MS thesis code (2021)`.
 - **Built on a MathWorks example:** the 2021 training script was built from MathWorks' *Object Detection Using YOLO v3 Deep Learning* example. The helper functions in `detection/yolov3/` were reimplemented in 2026 from the YOLO v3 paper and keep the same function names, so the script runs unchanged.
 - **YOLO v3 helpers, 2026:** `detection/yolov3/` holds the YOLO v3 network heads, targets, loss, decoding and data preparation, implemented from the YOLO v3 paper (Redmon & Farhadi, 2018) and verified in MATLAB. The thesis scripts call these functions by name.
-- **Verified in MATLAB R2026b (October 2026):** `detection/yolov3/test_yolov3_helpers.m` passes (box overlap, box encoding and decoding, the ignore rule, preprocessing, mirroring, learning-rate schedule), and `detection/yolov3/smoke_test_training_step.m` builds the full network and trains five steps on a random batch, with the loss falling from 15,377 to 366. Run both first; a full training run on the thesis dataset is the next step.
-- **End-to-end retrain check (MATLAB R2026b, CPU):** 1,000 iterations on a 548-image labelled sample of the thesis data (438 train / 110 test, resized to 227 × 227) took about 6 minutes; the training loss fell from 3,289 to 2.5 and the network reached test mAP@0.5 of 0.46 (pyramid 0.59, box 0.46, cylinder 0.45, traffic cone 0.33). The thesis model's 96.25% comes from the full run: 11,000 iterations on 10,989 images.
+- **Verified in MATLAB R2026b (October 2026):** `detection/yolov3/test_yolov3_helpers.m` passes (box overlap, box encoding and decoding, the ignore rule, preprocessing, mirroring, learning-rate schedule), and `detection/yolov3/smoke_test_training_step.m` builds the full network and trains five steps on a random batch, with the loss falling from 15,377 to 366. Run both first.
+- **End-to-end retrain check (MATLAB R2026b, CPU):** 1,000 iterations on a 548-image labelled sample of the thesis data (438 train / 110 test, resized to 227 × 227) took about 6 minutes; the training loss fell from 3,289 to 2.5 and the network reached test mAP@0.5 0.46 (pyramid 0.59, box 0.46, cylinder 0.45, traffic cone 0.33): a pipeline check, not the thesis model. The thesis model's 96.25% comes from the full run: 11,000 iterations on 10,989 images.
 - **Train:** each head's output is laid out as `[tx ty tw th to class_1 … class_C]` per anchor; train a network with `train_yolov3`.
 
 ## Run each step

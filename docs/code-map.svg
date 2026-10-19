@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470" role="img" aria-labelledby="t d">
   <title id="t">Code map: which folder does which step</title>
-  <desc id="d">Five pipeline steps in order, each with its folder and main scripts: detection trains and runs YOLO-v3; calibration finds camera intrinsics, sensor errors and the camera-to-LiDAR transform; lidar streams and clusters point clouds; fusion runs the real-time Kalman filter on the robot; simulation tests the same filter in a MATLAB driving scenario. sample_data feeds the calibration, fusion and simulation scripts; utils prepares data.</desc>
+  <desc id="d">Five pipeline steps in order, each with its folder and main scripts: detection trains and runs YOLO-v3; calibration finds camera intrinsics, sensor errors and the camera-to-LiDAR transform; lidar streams and clusters point clouds; fusion runs the live Kalman filter on the robot; simulation tests the same filter in a MATLAB driving scenario. sample_data feeds the calibration, fusion and simulation scripts; utils prepares data.</desc>
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
     <style>

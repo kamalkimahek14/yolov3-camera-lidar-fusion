@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 330" width="960" height="330" role="img" aria-labelledby="t d">
   <title id="t">Average precision per class on the test set</title>
-  <desc id="d">Average precision on the held-out test batch: pyramid 1.00 over 75 objects, cylinder 0.97 over 116, box 0.97 over 31, traffic cone 0.91 over 41. The network never confused one class for another.</desc>
+  <desc id="d">Average precision on the random 2% frame-level test split of the same recordings: pyramid 1.00 over 75 objects, cylinder 0.97 over 116, box 0.97 over 31, traffic cone 0.91 over 41. The network never confused one class for another.</desc>
   <style>
     text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#e2e8f0}
     .h{font-size:20px;font-weight:600}
