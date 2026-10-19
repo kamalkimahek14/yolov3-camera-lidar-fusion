@@ -56,7 +56,6 @@ All numbers come from the thesis (Chapters 2 and 7).
 | Result | Value |
 |---|---|
 | Test mAP@0.5, 4 classes (random 2% frame-level test split of the same recordings; per-class AP: pyramid 1.00, cylinder 0.97, box 0.97, traffic cone 0.91) | 96.25% |
-| Training accuracy, as reported in the thesis | 99.08% |
 | Test images detected correctly | 201 of 220, with no confusion between classes |
 | Mean IoU on the test set | 0.8157 |
 | Average detection time (offline test batch, detector only) | 59 ms per image |
